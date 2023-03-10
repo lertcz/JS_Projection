@@ -1,6 +1,6 @@
 import bresenham, { MidPoint } from "./draw.js";
 
-export class Vector3 {
+export class Point {
     constructor(x, y, z) {
         this.X = x
         this.Y = y
@@ -17,5 +17,29 @@ export class Mesh {
 
 export function connectPoints(i, j, points) {
     // ! in bresenham problem with decimal numbers
-    MidPoint(points[i], points[j], "#FFFF00")
+    bresenham(points[i], points[j], "#FFFF00")
+}
+
+export function rotateX(angle) {
+    return [
+        [1, 0, 0],
+        [0, Math.cos(angle), -Math.sin(angle)],
+        [0, Math.sin(angle), Math.cos(angle)]
+    ]
+}
+
+export function rotateY(angle) {
+    return [
+        [Math.cos(angle), 0, Math.sin(angle)],
+        [0, 1, 0],
+        [-Math.sin(angle), 0, Math.cos(angle)]
+    ]
+}
+
+export function rotateZ(angle) {
+    return [
+        [Math.cos(angle), -Math.sin(angle), 0],
+        [Math.sin(angle), Math.cos(angle), 0],
+        [1, 0, 0]
+    ]
 }
